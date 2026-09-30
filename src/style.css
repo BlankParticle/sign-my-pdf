@@ -1,0 +1,219 @@
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#f6f6f4, #161616);
+  --card: light-dark(#fff, #202020);
+  --line: light-dark(#d5d5d0, #3a3a3a);
+  --text: light-dark(#1b1b1b, #ececec);
+  --muted: light-dark(#6a6a66, #9a9a96);
+  --ok: light-dark(#0a7d33, #4cc97a);
+  --bad: light-dark(#b3261e, #f2776f);
+}
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+body {
+  margin: 0;
+  padding: 12px;
+  height: 100dvh;
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, sans-serif;
+}
+.muted {
+  color: var(--muted);
+}
+.bad {
+  color: var(--bad);
+}
+
+#drop {
+  margin: auto;
+  width: min(420px, 100%);
+  padding: 44px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+#drop:hover {
+  border-color: var(--muted);
+}
+#drop h1 {
+  margin: 0;
+  font-size: 22px;
+}
+#drop p {
+  margin: 0 0 22px;
+}
+#drop svg {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+#drop strong {
+  font-size: 16px;
+}
+#message {
+  margin-top: 14px;
+  max-width: 420px;
+}
+#signers {
+  position: fixed;
+  right: 16px;
+  bottom: 14px;
+}
+
+#result {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+#result header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#verdict {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--ok);
+  font-weight: 600;
+}
+iframe {
+  flex: 1;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border: 3px dashed var(--text);
+}
+
+button,
+.button {
+  font: inherit;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+button.primary,
+.button.primary {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+button.link {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+dialog {
+  width: min(380px, calc(100vw - 32px));
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
+}
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+dialog h2 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+dialog p {
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+dialog input {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+}
+dialog footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+dialog ul {
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+}
+dialog li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+/* no in-page PDF viewer (most phones): just the verdict and the actions */
+#result.bare {
+  justify-content: center;
+}
+#result.bare header {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#result.bare #verdict {
+  flex-basis: 100%;
+  white-space: normal;
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  #result header {
+    flex-wrap: wrap;
+  }
+  #verdict {
+    flex-basis: 100%;
+    white-space: normal;
+  }
+  #result header button,
+  #result header .button {
+    flex: 1;
+    text-align: center;
+  }
+}

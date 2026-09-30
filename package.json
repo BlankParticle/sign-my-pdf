@@ -1,0 +1,30 @@
+{
+  "name": "sigprint",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "tsc && vp build",
+    "preview": "vp preview",
+    "authorities": "node scripts/fetch-authorities.ts"
+  },
+  "dependencies": {
+    "@cantoo/pdf-lib": "^2.11.1",
+    "asn1js": "^3.0.10",
+    "pkijs": "^3.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
+    "wrangler": "^4.143.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.8.1",
+      "onFail": "download"
+    }
+  }
+}

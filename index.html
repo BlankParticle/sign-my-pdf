@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signature print</title>
+  </head>
+  <body>
+    <label id="drop">
+      <input id="file" type="file" accept="application/pdf" hidden />
+      <h1>Signature Print</h1>
+      <p class="muted">Print signed PDFs with the verified green tick.</p>
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+        <path d="M14 3v5h5" />
+        <path d="m9 14.5 2 2 4-4.5" />
+      </svg>
+      <strong>Drop a signed PDF</strong>
+      <span class="muted">or click to choose</span>
+      <span id="message" class="bad" hidden></span>
+    </label>
+    <button id="signers" class="link" hidden></button>
+
+    <section id="result" hidden>
+      <header>
+        <span id="verdict"></span>
+        <button id="another">Open another</button>
+        <a id="download" class="button">Download</a>
+        <a id="openpdf" class="button primary" target="_blank" hidden>Open PDF</a>
+        <button id="print" class="primary">Print</button>
+      </header>
+      <iframe id="preview" title="Verified PDF"></iframe>
+    </section>
+
+    <div id="overlay" hidden>Drop to open</div>
+
+    <dialog id="unlock">
+      <form method="dialog">
+        <h2>Password</h2>
+        <p id="unlockname" class="muted"></p>
+        <input id="password" type="password" autocomplete="off" required />
+        <p id="wrong" class="bad" hidden>Wrong password</p>
+        <footer>
+          <button type="button" class="cancel">Cancel</button>
+          <button value="ok" class="primary">Unlock</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="trust">
+      <form method="dialog">
+        <h2>Trust this signer?</h2>
+        <p><strong id="trustsigner"></strong></p>
+        <p class="muted">Issued by <span id="trustissuer"></span>, which isn't a known authority. The document itself is unchanged since signing.</p>
+        <footer>
+          <button type="button" class="cancel">Cancel</button>
+          <button value="ok" class="primary">Trust</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="signerlist">
+      <form method="dialog">
+        <h2>Trusted signers</h2>
+        <ul id="trustlist"></ul>
+        <footer><button class="primary">Done</button></footer>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
